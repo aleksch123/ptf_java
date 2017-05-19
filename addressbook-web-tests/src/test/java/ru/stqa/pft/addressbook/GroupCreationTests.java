@@ -37,7 +37,7 @@ public class GroupCreationTests {
 
         goToGroupPage();
         initGroupCreation();
-        fillGroupForm(new GroupDate("Test1", "Test2", "Test3"));
+        fillGroupForm(new GroupData("Test1", "Test2", "Test3"));
         submitGroupCreation();
         returnToGroupPage();
     }
@@ -50,7 +50,7 @@ public class GroupCreationTests {
         wd.findElement(By.name("submit")).click();
     }
 
-    private void fillGroupForm(GroupDate groupDate) {
+    private void fillGroupForm(GroupData groupDate) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
         wd.findElement(By.name("group_name")).sendKeys(groupDate.getName());

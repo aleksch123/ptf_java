@@ -1,11 +1,11 @@
 package ru.stqa.pft.addressbook;
 
-public class GroupDate {
+public class GroupData {
   private final String name;
   private final String header;
   private final String footer;
 
-  public GroupDate(String Name, String Header, String Footer) {
+  public GroupData(String Name, String Header, String Footer) {
     name = Name;
     header = Header;
     footer = Footer;
