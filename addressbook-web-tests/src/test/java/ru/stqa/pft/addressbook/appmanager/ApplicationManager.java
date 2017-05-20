@@ -52,9 +52,8 @@ public class ApplicationManager  {
         return navigationHalper;
     }
 
-    public void goToHomePage() {
-        wd.findElement(By.linkText("home page")).click();
-    }
+
+
 
     public AddrHelper getAddrHelper() {
         return addrHelper;
