@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
     FirefoxDriver wd;
 
+    private NavigationHelper navigationHalper;
     private  GroupHelper groupHelper;
 
     public static boolean isAlertPresent(FirefoxDriver wd) {
@@ -29,6 +30,7 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         groupHelper = new GroupHelper(wd);
+        navigationHalper=new NavigationHelper(wd);
         Login("admin","secret");
     }
 
@@ -42,15 +44,15 @@ public class ApplicationManager {
        wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
     }
 
-    public void goToGroupPage() {
-       wd.findElement(By.linkText("groups")).click();
-    }
-
     public void stop() {
        wd.quit();
     }
 
     public GroupHelper getGroupHelper() {
         return groupHelper;
+    }
+
+    public NavigationHelper getNavigationHalper() {
+        return navigationHalper;
     }
 }
