@@ -9,10 +9,10 @@ public class UserCreationTests extends TestBase {
     @Test
     public void UserCreationTests() {
 
-        app.initUserCreations();
-        app.fillUserData(new UserData("John", "Smith", "St", "Jos", "Mr.",
+        app.getAddrHelper().initUserCreations();
+        app.getAddrHelper().fillUserData(new UserData("John", "Smith", "St", "Jos", "Mr.",
                 "Global", "10005 NY 5st ave 123", "+1234567890", "johmsmith@yahoo.cpm"));
-        app.submitUserCreations();
+        app.getAddrHelper().submitUserCreations();
         app.goToHomePage();
     }
 
