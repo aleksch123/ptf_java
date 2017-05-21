@@ -3,11 +3,11 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.UserData;
 
-public class UserCreationTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
 
     @Test
-    public void UserCreationTests() {
+    public void testContactCreation() {
 
         app.getAddrHelper().initUserCreations();
         app.getAddrHelper().fillUserData(new UserData("John", "Smith", "St", "Jos", "Mr.",

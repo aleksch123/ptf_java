@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -14,7 +13,7 @@ public class ApplicationManager  {
 
     FirefoxDriver wd;
     private SessionHelper sessionHelper;
-    private AddrHelper addrHelper;
+    private ContactHelper addrHelper;
     private NavigationHelper navigationHalper;
     private  GroupHelper groupHelper;
 
@@ -34,7 +33,7 @@ public class ApplicationManager  {
         groupHelper = new GroupHelper(wd);
         navigationHalper=new NavigationHelper(wd);
         sessionHelper=new SessionHelper(wd);
-        addrHelper=new AddrHelper(wd);
+        addrHelper=new ContactHelper(wd);
         sessionHelper.Login("admin","secret");
     }
 
@@ -55,7 +54,7 @@ public class ApplicationManager  {
 
 
 
-    public AddrHelper getAddrHelper() {
+    public ContactHelper getAddrHelper() {
         return addrHelper;
     }
 }

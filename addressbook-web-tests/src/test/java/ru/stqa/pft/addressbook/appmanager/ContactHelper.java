@@ -7,10 +7,10 @@ import ru.stqa.pft.addressbook.model.UserData;
 /**
  * Created by Алексей on 20.05.2017.
  */
-public class AddrHelper extends HelperBase{
+public class ContactHelper extends HelperBase{
 
 
-    public AddrHelper(FirefoxDriver wd) {
+    public ContactHelper(FirefoxDriver wd) {
 
         super(wd);
     }
