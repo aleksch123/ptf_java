@@ -30,7 +30,12 @@ public class GroupHelper extends HelperBase{
     public void initGroupCreation() {
         click(By.name("new"));
     }
-
+    public void initGroupEdition() {
+        click(By.name("edit"));
+    }
+    public void UpdateGroupEdition() {
+        click(By.name("update"));
+    }
     public void deleteSelectedGroups() {
         click(By.name("delete"));
     }
