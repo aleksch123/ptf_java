@@ -21,4 +21,11 @@ public class NavigationHelper extends HelperBase{
 
         click(By.linkText("home page"));
     }
+    public void CloseAlert() {
+
+        wd.switchTo().alert().accept();
+    }
+    public void goToMainPage(){
+        click(By.linkText("home"));
+    }
 }

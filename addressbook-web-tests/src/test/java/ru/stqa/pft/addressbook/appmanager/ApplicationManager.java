@@ -13,7 +13,7 @@ public class ApplicationManager  {
 
     FirefoxDriver wd;
     private SessionHelper sessionHelper;
-    private ContactHelper addrHelper;
+    private ContactHelper contactHelper;
     private NavigationHelper navigationHalper;
     private  GroupHelper groupHelper;
 
@@ -33,7 +33,7 @@ public class ApplicationManager  {
         groupHelper = new GroupHelper(wd);
         navigationHalper=new NavigationHelper(wd);
         sessionHelper=new SessionHelper(wd);
-        addrHelper=new ContactHelper(wd);
+        contactHelper =new ContactHelper(wd);
         sessionHelper.Login("admin","secret");
     }
 
@@ -54,7 +54,7 @@ public class ApplicationManager  {
 
 
 
-    public ContactHelper getAddrHelper() {
-        return addrHelper;
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 }
