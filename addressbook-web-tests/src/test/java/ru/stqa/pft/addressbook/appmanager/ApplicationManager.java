@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.BrowserType;
+import sun.plugin2.util.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,11 +37,11 @@ public class ApplicationManager  {
 
     public void init() {
 
-        if (browser.equals(BrowserType.FIREFOX)){
+        if (browser.equals(org.openqa.selenium.remote.BrowserType.FIREFOX)){
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-        } else if (browser.equals( BrowserType.CHROME)){
+        } else if (browser.equals( org.openqa.selenium.remote.BrowserType.CHROME)){
             wd = new ChromeDriver();
-        } else if (browser.equals( BrowserType.IE)) {
+        } else if (browser.equals( org.openqa.selenium.remote.BrowserType.IE)) {
             wd = new EdgeDriver();
         }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
