@@ -30,7 +30,7 @@ public class ContactHelper extends HelperBase{
         type(By.name("address"),userData.getAddress());
         type(By.name("home"),userData.getPhone());
         type(By.name("email"),userData.getEmail());
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
     }
 
     public void initContactCreations() {
