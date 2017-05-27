@@ -22,7 +22,8 @@ public class ApplicationManager  {
     private  GroupHelper groupHelper;
     private String browser;
 
-    public ApplicationManager(String browser) {
+    public ApplicationManager(String browser)
+    {
         this.browser = browser;
     }
 
@@ -43,13 +44,7 @@ public class ApplicationManager  {
         } else if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
         } else if (browser.equals(BrowserType.IE)) {
-            if (browser.equals( BrowserType.FIREFOX)) {
-                wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
-            } else if (browser.equals( BrowserType.CHROME)) {
-                wd = new ChromeDriver();
-            } else if (browser.equals( BrowserType.IE)) {
-
-                wd = new InternetExplorerDriver();
+            wd = new InternetExplorerDriver();
             }
             wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
             wd.get("http://localhost/addressbook/group.php");
@@ -60,7 +55,7 @@ public class ApplicationManager  {
             sessionHelper.Login("admin", "secret");
         }
 
-    }
+
 
     public void stop() {
        wd.quit();
