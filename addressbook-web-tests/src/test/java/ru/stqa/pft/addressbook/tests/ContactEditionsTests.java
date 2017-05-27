@@ -12,7 +12,8 @@ public class ContactEditionsTests extends TestBase {
         app.getNavigationHalper().goToMainPage();
         app.getContactHelper().initContactEditions();
         app.getContactHelper().fillUserData(new ContactData("John", "Smith", "St", "Jos", "Mr.",
-                "Global", "10005 NY 5st ave 123", "+22222222222", "johmsmith@gmail.com",null));
+                "Global", "10005 NY 5st ave 123", "+22222222222",
+                "johmsmith@gmail.com",null),false);
         app.getContactHelper().UpdateContactEdition();
         app.getNavigationHalper().goToHomePage();
     }

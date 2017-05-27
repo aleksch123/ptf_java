@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.NoSuchElementException ;
+
 /**
  * Created by Алексей on 21.05.2017.
  */
@@ -27,5 +29,15 @@ public class HelperBase {
             }
 
         }
+    }
+
+    protected boolean isElementPresent(By locator){
+       try {
+           wd.findElement(locator);
+           return true;
+       } catch (NoSuchElementException ex){
+           return false;
+       }
+
     }
 }
