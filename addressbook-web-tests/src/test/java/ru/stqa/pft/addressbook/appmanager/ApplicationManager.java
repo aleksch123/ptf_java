@@ -37,11 +37,18 @@ public class ApplicationManager  {
 
     public void init() {
 
+
         if (browser.equals(BrowserType.FIREFOX)){
             wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
         } else if (browser.equals( BrowserType.CHROME)){
             wd = new ChromeDriver();
         } else if (browser.equals( BrowserType.IE)) {
+         if (browser== org.openqa.selenium.remote.BrowserType.FIREFOX){
+            wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true));
+        } else if (browser== org.openqa.selenium.remote.BrowserType.CHROME){
+            wd = new ChromeDriver();
+        } else if (browser== org.openqa.selenium.remote.BrowserType.IE) {
+
             wd = new EdgeDriver();
         }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
