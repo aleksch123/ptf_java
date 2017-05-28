@@ -17,7 +17,7 @@ public class ContactDeletionTests extends TestBase {
                     "St", "Jos", "Mr.",
                     "Global", "10005 NY 5st ave 123",
                     "+1234567890", "johmsmith@yahoo.cpm","Test1"),true);}
-        app.getContactHelper().selectContact();
+        app.getContactHelper().selectContact(before-1);
         app.getContactHelper().deleteSelectedContact();
         app.getNavigationHalper().CloseAlert();
         app.getNavigationHalper().goToMainPage();
