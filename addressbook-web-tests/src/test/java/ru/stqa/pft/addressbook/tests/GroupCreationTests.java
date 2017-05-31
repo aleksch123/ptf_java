@@ -19,7 +19,7 @@ public class GroupCreationTests extends TestBase {
         List<GroupData> before =app.getGroupHelper().getGroupList();
 
         app.getGroupHelper().initGroupCreation();
-        GroupData  group = new GroupData("Test1", "Test2", "Test3");
+        GroupData  group = new GroupData("Test2", "Test2", "Test3");
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnToGroupPage();
@@ -29,13 +29,10 @@ public class GroupCreationTests extends TestBase {
 
         before.add(group);
 
-        int max=0;
-        for (GroupData g:after){
-            if(g.getId()>max){
-                max=g.getId();
-            }
-        }
-        group.setId(max);
+
+
+
+        group.setId(after.stream().max( (o1, o2) -> Integer.compare(o1.getId(),o2.getId())).get().getId());
         Assert.assertEquals(new HashSet<>(before),new HashSet<>(after));
     }
 
