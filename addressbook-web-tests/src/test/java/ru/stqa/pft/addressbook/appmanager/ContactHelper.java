@@ -81,23 +81,23 @@ public class ContactHelper extends HelperBase{
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements =wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[2]"));
-        List<WebElement> elements1 =wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[3]"));
-        List<WebElement> elements2 =wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[4]"));
-        List<WebElement> elements3 =wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[5]"));
-        List<WebElement> elements4 =wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[6]"));
+        List<WebElement> elements =wd.findElements(By.name("entry"));
+        for (int i=0;i<elements.size();i++) {
 
-        for (int i=0; i<elements.size(); i++){
-            String LastName = elements.get(i).getText();
-            String Name =elements1.get(i).getText();
-            String Address =elements2.get(i).getText();
-            String Email =elements3.get(i).getText();
-            String Phone =elements4.get(i).getText();
 
-            ContactData contact = new ContactData(Name,LastName,null,null,
+            String LastName =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[2]")).getText();
+            String Name =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[3]")).getText();
+            String Address =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[4]")).getText();
+            String Email =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[5]")).getText();
+            String Phone =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[6]")).getText();
+            int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id,Name,LastName,null,null,
                     null,null,Address, Phone,Email,null);
             contacts.add(contact);
+
         }
+
+
         return contacts;
 
     }
