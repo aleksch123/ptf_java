@@ -1,20 +1,20 @@
 package ru.stqa.pft.addressbook.model;
 
 public class GroupData {
-  private final String id;
+  private  int id;
   private final String name;
   private final String header;
   private final String footer;
 
 
-  public GroupData(String id,String Name, String Header, String Footer) {
+  public GroupData(int id,String Name, String Header, String Footer) {
     this.id = id;
     this.name = Name;
     this.header = Header;
     this.footer = Footer;
   }
   public GroupData(String Name, String Header, String Footer) {
-    this.id = null;
+    this.id = 0;
     this.name = Name;
     this.header = Header;
     this.footer = Footer;
@@ -27,6 +27,17 @@ public class GroupData {
 
   public String getHeader() {
     return header;
+  }
+
+  public String getFooter() {
+    return footer;
+  }
+
+  public int getId() {    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   @Override
@@ -44,22 +55,17 @@ public class GroupData {
 
     GroupData groupData = (GroupData) o;
 
-    if (id != null ? !id.equals(groupData.id) : groupData.id != null) return false;
+    if (id != groupData.id) return false;
     return name != null ? name.equals(groupData.name) : groupData.name == null;
   }
 
   @Override
   public int hashCode() {
-    int result = id != null ? id.hashCode() : 0;
+    int result = id;
     result = 31 * result + (name != null ? name.hashCode() : 0);
     return result;
   }
 
-  public String getFooter() {
-    return footer;
-  }
 
-  public String getId() {    return id;
-  }
 }
 
