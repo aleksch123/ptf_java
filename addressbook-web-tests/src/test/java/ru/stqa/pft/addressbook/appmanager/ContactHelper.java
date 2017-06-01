@@ -82,17 +82,14 @@ public class ContactHelper extends HelperBase{
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements =wd.findElements(By.name("entry"));
-        for (int i=0;i<elements.size();i++) {
+        for (WebElement element: elements){
+            List <WebElement> cells = element.findElements(By.tagName("td"));
 
-
-            String LastName =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[2]")).getText();
-            String Name =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[3]")).getText();
-            String Address =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[4]")).getText();
-            String Email =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[5]")).getText();
-            String Phone =elements.get(i).findElement(By.xpath("//table[@id='maintable']/tbody/tr["+(i+2)+"]/td[6]")).getText();
-            int id = Integer.parseInt(elements.get(i).findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id,Name,LastName,null,null,
-                    null,null,Address, Phone,Email,null);
+            String lastName = cells.get(1).getText();
+            String name=cells.get(2).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id,name,lastName,null,null,
+                    null,null,null, null,null,null);
             contacts.add(contact);
 
         }
