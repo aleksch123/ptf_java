@@ -14,37 +14,37 @@ public class ContactData {
   private int id;
 
 
-  public ContactData(String FirstName, String LastName,
-                     String MiddleName, String NickName, String Title, String Company,
-                     String Address, String Phone, String Email, String Group) {
+  public ContactData(String firstName, String lastName,
+                     String middleName, String nickName, String title, String company,
+                     String address, String phone, String email, String group) {
     this.id=0;
-    this.firstName = FirstName;
-    this.lastName = LastName;
-    this.middleName = MiddleName;
-    this.nickName = NickName;
-    this.title = Title;
-    this.company = Company;
-    this.address = Address;
-    this.phone = Phone;
-    this.email = Email;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.middleName = middleName;
+    this.nickName = nickName;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.phone = phone;
+    this.email = email;
 
-    this.group = Group;
+    this.group = group;
   }
-  public ContactData(int id,String FirstName, String LastName,
-                     String MiddleName, String NickName, String Title, String Company,
-                     String Address, String Phone, String Email, String Group) {
+  public ContactData(int id,String firstName, String lastName,
+                     String middleName, String nickName, String title, String company,
+                     String address, String phone, String email, String group) {
     this.id=id;
-    this.firstName = FirstName;
-    this.lastName = LastName;
-    this.middleName = MiddleName;
-    this.nickName = NickName;
-    this.title = Title;
-    this.company = Company;
-    this.address = Address;
-    this.phone = Phone;
-    this.email = Email;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.middleName = middleName;
+    this.nickName = nickName;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.phone = phone;
+    this.email = email;
 
-    this.group = Group;
+    this.group = group;
   }
 
   public String getFirstName() {
@@ -106,19 +106,13 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-    return email != null ? email.equals(that.email) : that.email == null;
+    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
   }
 
   @Override
   public int hashCode() {
     int result = firstName != null ? firstName.hashCode() : 0;
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (phone != null ? phone.hashCode() : 0);
-    result = 31 * result + (email != null ? email.hashCode() : 0);
     result = 31 * result + id;
     return result;
   }
