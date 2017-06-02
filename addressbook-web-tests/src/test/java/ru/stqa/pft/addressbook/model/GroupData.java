@@ -13,9 +13,12 @@ public class GroupData {
     this.header = Header;
     this.footer = Footer;
   }
+
+
   public GroupData(String Name, String Header, String Footer) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = Name;
+
     this.header = Header;
     this.footer = Footer;
   }
@@ -47,6 +50,21 @@ public class GroupData {
             ", name='" + name + '\'' +
             '}';
   }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    GroupData groupData = (GroupData) o;
+
+    return name != null ? name.equals(groupData.name) : groupData.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    return name != null ? name.hashCode() : 0;
+  }
+
 
 
 }
