@@ -15,12 +15,10 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void testGroupCreation() {
 
-
+        GroupData  group = new GroupData("Test1", "Test2", "Test3");
         app.getNavigationHalper().goToGroupPage();
         List<GroupData> before =app.getGroupHelper().getGroupList();
-
         app.getGroupHelper().initGroupCreation();
-        GroupData  group = new GroupData("Test1", "Test2", "Test3");
         app.getGroupHelper().fillGroupForm(group);
         app.getGroupHelper().submitGroupCreation();
         app.getGroupHelper().returnToGroupPage();

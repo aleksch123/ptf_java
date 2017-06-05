@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.appmanager.NavigationHelper;
-import ru.stqa.pft.addressbook.model.GroupData;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
+
+import static ru.stqa.pft.addressbook.tests.TestBase.app;
+
 
 /**
  * Created by Алексей on 20.05.2017.
@@ -74,6 +75,18 @@ public class ContactHelper extends HelperBase{
 
 
     }
+    public void modifyContact(int index, ContactData contact) {
+        initContactEditions(index);
+        fillUserData(contact, false);
+        UpdateContactEdition();
+        goToMainPage();
+    }
+    public void deletContact(int index) {
+        selectContact(index);
+        deleteSelectedContact();
+        app.getNavigationHalper().CloseAlert();
+        app.getNavigationHalper().goToMainPage();
+    }
 
     public int GetContactCount() {
         return wd.findElements(By.name("selected[]")).size();
@@ -97,5 +110,8 @@ public class ContactHelper extends HelperBase{
 
         return contacts;
 
+    }
+    public void goToMainPage(){
+        click(By.linkText("home"));
     }
 }

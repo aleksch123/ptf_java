@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -10,19 +11,25 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
+    @BeforeMethod
+
+    public void ensurePreconditions(){
+        if (!app.getGroupHelper().isThereAGroup()){
+            app.getGroupHelper().CreateGroup(new GroupData("Test1","Test2","Test3"));}
+        app.getNavigationHalper().goToMainPage();
+
+    }
 
 
     @Test
     public void testContactCreation() {
-        if (!app.getGroupHelper().isThereAGroup()){
-            app.getGroupHelper().CreateGroup(new GroupData("Test1","Test2","Test3"));}
-        app.getNavigationHalper().goToMainPage();
+
         List<ContactData> before =app.getContactHelper().getContactList();
-        app.getContactHelper().initContactCreations();
         ContactData contact = new ContactData("John", "Smith", "St", "Jos", "Mr.",
                 "Global", "10005 NY 5st ave 123",
                 "+1234567890", "johmsmith@yahoo.cpm","Test1");
         app.getContactHelper().fillUserData(contact,true);
+        app.getContactHelper().initContactCreations();
         app.getContactHelper().submitUserCreations();
         app.getNavigationHalper().goToMainPage();
         List<ContactData> after =app.getContactHelper().getContactList();
