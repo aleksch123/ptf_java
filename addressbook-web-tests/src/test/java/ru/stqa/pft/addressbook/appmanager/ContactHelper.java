@@ -84,8 +84,8 @@ public class ContactHelper extends HelperBase{
     public void deletContact(int index) {
         selectContact(index);
         deleteSelectedContact();
-        app.getNavigationHalper().CloseAlert();
-        app.getNavigationHalper().goToMainPage();
+        app.goTo().CloseAlert();
+        app.goTo().goToMainPage();
     }
 
     public int GetContactCount() {
