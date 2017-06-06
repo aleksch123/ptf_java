@@ -14,10 +14,9 @@ public class ContactEditionsTests extends TestBase {
         app.goTo().mainPage();
 
         if (app.contact().list().size()==0) {
-            app.contact().create(new ContactData("John", "Smith",
-                    "St", "Jos", "Mr.",
-                    "Global", "10005 NY 5st ave 123",
-                    "+1234567890", "johmsmith@yahoo.cpm", "Test1"), true);
+            app.contact().create(new ContactData().withFirstName("John").withLastName("Smith")
+                    .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
+                    .withEmail("johmsmith@yahoo.cpm").withGroup("Test1"), true);
         }
 
     }
@@ -29,10 +28,9 @@ public class ContactEditionsTests extends TestBase {
 
         List<ContactData> before =app.contact().list();
         int index = before.size()-1;
-        ContactData contact = new ContactData(before.get(index).getId(),"John", "Smith",
-                "St", "Jos", "Mr.",
-                "Global", "10005 NY 5st ave 123", "+22222222222",
-                "johmsmith@gmail.com", null);
+        ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstName("John").withLastName("Smith")
+                .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
+                .withEmail("johmsmith@yahoo.cpm");
         app.contact().modify(index, contact);
         List<ContactData> after =app.contact().list();
         Assert.assertEquals(after.size(),before.size());
