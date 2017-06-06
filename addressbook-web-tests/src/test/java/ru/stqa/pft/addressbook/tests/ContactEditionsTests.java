@@ -12,7 +12,7 @@ public class ContactEditionsTests extends TestBase {
     public void ensurePreconditions(){
         app.goTo().mainPage();
 
-        if (app.contact().list().size()==0) {
+        if (app.contact().all().size()==0) {
             app.contact().create(new ContactData().withFirstName("John").withLastName("Smith")
                     .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
                     .withEmail("johmsmith@yahoo.cpm").withGroup("Test1"), true);

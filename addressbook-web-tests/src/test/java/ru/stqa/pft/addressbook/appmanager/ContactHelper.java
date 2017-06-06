@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,18 +50,15 @@ public class ContactHelper extends HelperBase{
     public void initContactCreations() {
         click(By.linkText("add new"));
     }
-    public void initContactEditions(int index){
-        wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")).get(index).click();
-        }
+
+
     public void initContactEditionsById(int id){
         wd.findElement(By.xpath("//tr['"+id+"']/td[8]/a/img")).click();
     }
     public void UpdateContactEdition() {
         click(By.name("update"));
     }
-    public void selectContact(int index) {
-        wd.findElements(By.name("selected[]")).get(index).click();
-       }
+
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
     }
@@ -88,35 +83,17 @@ public class ContactHelper extends HelperBase{
         UpdateContactEdition();
         goToMainPage();
     }
-    public void delete(int index) {
-        selectContact(index);
-        deleteSelectedContact();
-        app.goTo().CloseAlert();
-        app.goTo().mainPage();
-    }
+
 
 
     public int GetContactCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<ContactData> list() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements =wd.findElements(By.name("entry"));
-        for (WebElement element: elements){
-            List <WebElement> cells = element.findElements(By.tagName("td"));
-
-            String lastName = cells.get(1).getText();
-            String name=cells.get(2).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
-
-        }
 
 
-        return contacts;
 
-    }
+
     public Set<ContactData> all() {
         Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements =wd.findElements(By.name("entry"));
