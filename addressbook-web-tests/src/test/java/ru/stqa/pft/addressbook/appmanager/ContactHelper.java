@@ -55,6 +55,9 @@ public class ContactHelper extends HelperBase{
     public void initContactEditions(int index){
         wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr/td[8]/a/img")).get(index).click();
         }
+    public void initContactEditionsById(int id){
+        wd.findElement(By.xpath("//tr['"+id+"']/td[8]/a/img")).click();
+    }
     public void UpdateContactEdition() {
         click(By.name("update"));
     }
@@ -79,8 +82,8 @@ public class ContactHelper extends HelperBase{
 
 
     }
-    public void modify(int index, ContactData contact) {
-        initContactEditions(index);
+    public void edit(ContactData contact) {
+        initContactEditionsById(contact.getId());
         fillUserData(contact, false);
         UpdateContactEdition();
         goToMainPage();
