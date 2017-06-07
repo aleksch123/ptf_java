@@ -73,13 +73,15 @@ public class ContactHelper extends HelperBase{
         initContactCreations();
         fillUserData(contact,true);
         submitUserCreations();
-
+        contactCache= null;
+        goToMainPage();
 
     }
     public void edit(ContactData contact) {
         initContactEditionsById(contact.getId());
         fillUserData(contact, false);
         UpdateContactEdition();
+        contactCache= null;
         goToMainPage();
     }
 
@@ -90,11 +92,14 @@ public class ContactHelper extends HelperBase{
     }
 
 
-
+    private Contacts contactCache= null;
 
 
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if(contactCache !=null){
+         return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements =wd.findElements(By.name("entry"));
         for (WebElement element: elements){
             List <WebElement> cells = element.findElements(By.tagName("td"));
@@ -105,12 +110,12 @@ public class ContactHelper extends HelperBase{
             String email=cells.get(4).getText();
             String phone=cells.get(5).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName).withAddress(address).withEmail(email).withPhone(phone));
+            contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName).withAddress(address).withEmail(email).withPhone(phone));
 
         }
 
 
-        return contacts;
+        return new Contacts(contactCache);
 
     }
     public void goToMainPage(){
@@ -120,6 +125,7 @@ public class ContactHelper extends HelperBase{
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
         deleteSelectedContact();
+        contactCache= null;
         app.goTo().CloseAlert();
         app.goTo().mainPage();
 
