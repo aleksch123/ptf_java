@@ -14,6 +14,17 @@ public class ContactData {
   private String home;
   private String mobile;
   private String work;
+  private String allPhones;
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
   private int id=Integer.MAX_VALUE;
 
 
