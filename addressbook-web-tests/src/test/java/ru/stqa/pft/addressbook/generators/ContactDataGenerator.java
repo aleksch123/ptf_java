@@ -69,7 +69,8 @@ public class ContactDataGenerator {
 
     try (Writer writer = new FileWriter(file)) {
       for (ContactData contact : contacts) {
-        writer.write(String.format("%s;%s;%s\n", contact.getFirstName(), contact.getLastName(), contact.getHomePhone()));
+        writer.write(String.format("%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),contact.getAddress(),
+                contact.getHomePhone(),contact.getEmail(),contact.getGroup()));
       }
     }
 
@@ -95,10 +96,16 @@ public class ContactDataGenerator {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i=0; i<count;i++){
       contacts.add(new ContactData().withFirstName(String.format("John%s",i))
-              .withLastName(String.format("Smith%s",i)).withEmail(String.format("email%s@yahoo.com",i)));
+              .withLastName(String.format("Smith%s",i)).withAddress(String.format("1005%s",i))
+              .withPhone(String.format("1234567%s",i)).withEmail(String.format("email%s@yahoo.com",i)).withGroup("Test1"));
     }
     return contacts;
 
   }
 
 }
+/**File photo= new File("src/test/resources/img.jpg");
+ ContactData contact = new ContactData().withFirstName("John").withLastName("Smith")
+ .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
+ .withEmail("johmsmith@yahoo.cpm").withGroup("Test1").withPhoto(photo);
+ */
