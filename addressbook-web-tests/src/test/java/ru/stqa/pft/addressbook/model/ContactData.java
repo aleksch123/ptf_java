@@ -60,6 +60,7 @@ public class ContactData {
   private  String work;
   @Transient
   private  String allPhones;
+  @Expose
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;

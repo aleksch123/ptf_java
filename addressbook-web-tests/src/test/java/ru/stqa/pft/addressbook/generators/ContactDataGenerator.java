@@ -93,12 +93,13 @@ public class ContactDataGenerator {
 
 
   private  List<ContactData> generateContacts(int count) {
-    File photo= new File("src/test/resources/img.jpg");
+
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i=0; i<count;i++){
       contacts.add(new ContactData().withFirstName(String.format("John%s",i))
               .withLastName(String.format("Smith%s",i)).withAddress(String.format("1005%s",i))
-              .withPhone(String.format("1234567%s",i)).withEmail(String.format("email%s@yahoo.com",i)).withGroup("Test1"));
+              .withPhone(String.format("1234567%s",i)).withEmail(String.format("email%s@yahoo.com",i))
+              .withGroup("Test1").withPhoto(new File("src/test/resources/img.jpg")));
     }
     return contacts;
 
@@ -108,5 +109,5 @@ public class ContactDataGenerator {
 /**File photo= new File("src/test/resources/img.jpg");
  ContactData contact = new ContactData().withFirstName("John").withLastName("Smith")
  .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
- .withEmail("johmsmith@yahoo.cpm").withGroup("Test1").withPhoto(photo);
+ .withEmail("johmsmith@yahoo.cpm").withGroup("Test1").withPhoto(new File("src/test/resources/img.jpg"));
  */
