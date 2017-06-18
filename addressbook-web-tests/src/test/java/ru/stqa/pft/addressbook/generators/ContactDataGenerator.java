@@ -93,6 +93,7 @@ public class ContactDataGenerator {
 
 
   private  List<ContactData> generateContacts(int count) {
+    File photo= new File("src/test/resources/img.jpg");
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i=0; i<count;i++){
       contacts.add(new ContactData().withFirstName(String.format("John%s",i))
