@@ -2,36 +2,67 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.io.File;
 
 @XStreamAlias("contact")
+@Entity
+@javax.persistence.Table(name = "addressbook")
 
 public class ContactData {
+  @Id
+  @Column(name = "id")
+  private int id=Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private  String firstName;
   @Expose
+  @Column(name = "lastname")
   private  String lastName;
   private  String middleName;
+  @Transient
   private  String nickName;
+  @Transient
   private  String title;
+  @Transient
   private  String company;
   @Expose
+  @Type(type = "text")
   private  String address;
   @Expose
+  @Transient
   private  String phone;
   @Expose
+  @Type(type = "text")
   private  String email;
+  @Transient
   private  String email2;
+  @Transient
   private  String email3;
+  @Transient
   private  String allEmails;
   @Expose
+  @Transient
   private  String group;
+  @Column(name = "home")
+  @Type(type = "text")
   private  String home;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private  String mobile;
+  @Column(name = "work")
+  @Type(type = "text")
   private  String work;
+  @Transient
   private  String allPhones;
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
 
 
@@ -46,7 +77,7 @@ public class ContactData {
     return this;
   }
 
-  private int id=Integer.MAX_VALUE;
+
 
 
 
@@ -112,7 +143,7 @@ public class ContactData {
     return group;
   }
 
-  public File getPhoto() {    return photo;  }
+  public File getPhoto() {    return new File(photo);  }
 
 
   public ContactData withId(int id) {
@@ -192,7 +223,7 @@ public class ContactData {
     return this;
   }
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
