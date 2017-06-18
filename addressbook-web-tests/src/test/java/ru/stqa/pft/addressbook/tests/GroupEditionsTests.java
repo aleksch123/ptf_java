@@ -21,7 +21,7 @@ public class GroupEditionsTests extends TestBase {
 
      if (app.db().groups().size()==0){
 
-      app.group().CreateGroup(new GroupData().withName("Test1"));
+      app.group().CreateGroup(new GroupData().withName("Test1").withHeader("Test2").withFooter("Test3"));
   }
 
 }
