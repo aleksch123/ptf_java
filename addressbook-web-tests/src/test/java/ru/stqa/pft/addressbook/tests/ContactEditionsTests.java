@@ -29,13 +29,14 @@ public class ContactEditionsTests extends TestBase {
 
         Contacts before =app.db().contacts();
         ContactData editedContact =before.iterator().next();
-        ContactData contact = new ContactData().withId(editedContact.getId()).withFirstName("John").withLastName("Smith")
+        ContactData contact = new ContactData().withId(editedContact.getId()).withFirstName("John4").withLastName("Smith4")
                 .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
                 .withEmail("johmsmith@yahoo.com");
         app.contact().edit(contact);
         Contacts after =app.db().contacts();
         assertEquals(after.size(),before.size());
         assertThat(after,equalTo(before.withModified(editedContact,contact)));
+        verifyContactListInUi();
     }
 
 

@@ -63,7 +63,7 @@ public class ContactData {
   @Expose
   @Column(name = "photo")
   @Type(type = "text")
-  private String photo;
+  private String photo="";
 
 
 
