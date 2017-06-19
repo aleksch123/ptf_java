@@ -39,7 +39,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), userData.getHomePhone());
         type(By.name("mobile"), userData.getMobilePhone());
         type(By.name("work"), userData.getWorkPhone());
-        attach(By.name("photo"), userData.getPhoto());
+        //attach(By.name("photo"), userData.getPhoto());
 
         type(By.name("email"), userData.getEmail());
         if (creation) {
@@ -56,7 +56,7 @@ public class ContactHelper extends HelperBase {
 
 
     public void initContactEditionsById(int id) {
-        wd.findElement(By.xpath("//tr['" + id + "']/td[8]/a/img")).click();
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
 
     public void UpdateContactEdition() {
