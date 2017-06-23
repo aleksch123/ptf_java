@@ -138,6 +138,15 @@ public class ContactHelper extends HelperBase {
         app.goTo().mainPage();
 
     }
+    public void assiment(ContactData contact) {
+        selectContactById(contact.getId());
+        assinSelectedContactToGroup();
+        contactCache = null;
+        app.goTo().mainPage();
+    }
+    private void assinSelectedContactToGroup() {
+
+    }
 
     public ContactData infoFromEditForm(ContactData contact) {
         initContactEditionsById(contact.getId());
