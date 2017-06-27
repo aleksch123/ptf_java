@@ -42,21 +42,16 @@ public class AssimentGroupTests extends TestBase{
   public void testAssimentGroup() {
     Groups existedGroups =app.db().groups();
     Contacts before =app.db().contacts();
-    while(before.iterator().hasNext()) {
-      ContactData editedContact = before.iterator().next();
-      Groups beforeAssimentGroups = editedContact.getGroups();
-      while (existedGroups.iterator().hasNext()) {
-        GroupData group = existedGroups.iterator().next();
+    for(ContactData editedContact:before) {
+       Groups beforeAssimentGroups = editedContact.getGroups();
+      for (GroupData group :existedGroups) {
+
         if (!beforeAssimentGroups.contains(group)) {
 
           app.contact().assiment(editedContact, group);
         }
       }
     }
-
-
-
-
   }
 
 
