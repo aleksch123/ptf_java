@@ -4,11 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -34,7 +33,11 @@ public class ContactData {
   @Expose
   @Type(type = "text")
   private  String address;
+
+
+
   @Expose
+
   @Transient
   private  String phone;
   @Expose
@@ -46,9 +49,11 @@ public class ContactData {
   private  String email3;
   @Transient
   private  String allEmails;
-  @Expose
-  @Transient
-  private  String group;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns=@JoinColumn(name = "group_id"))
+  private Set<GroupData> groups=new HashSet<GroupData>();
+
   @Column(name = "home")
   @Type(type = "text")
   private  String home;
@@ -140,11 +145,16 @@ public class ContactData {
     return phone;
   }
 
-  public String getGroup() {
-    return group;
-  }
 
   public File getPhoto() {    return new File(photo);  }
+
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+  public ContactData inGroup(GroupData group){
+    groups.add(group);
+    return this;
+  }
 
 
   public ContactData withId(int id) {
@@ -207,10 +217,8 @@ public class ContactData {
     this.allEmails = allEmails;
     return this;
   }
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
+
+
   public ContactData withHomePhone(String home) {
     this.home = home;
     return this;
@@ -262,7 +270,6 @@ public class ContactData {
             ", address='" + address + '\'' +
             ", phone='" + phone + '\'' +
             ", email='" + email + '\'' +
-            ", group='" + group + '\'' +
             ", id=" + id +
             '}';
   }

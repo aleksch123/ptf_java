@@ -6,9 +6,9 @@ import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Table;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("group")
 @Entity
@@ -59,11 +59,20 @@ public class GroupData {
     this.footer = footer;
     return this;
   }
+
+  public Contacts getContacts() {
+    return new Contacts(contacts);
+  }
+
+
   public GroupData withId(int id) {
 
     this.id = id;
     return this;
+
   }
+  @ManyToMany(mappedBy = "groups")
+  private Set<ContactData> contacts=new HashSet<ContactData>();
 
   @Override
   public String toString() {

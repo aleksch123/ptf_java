@@ -7,23 +7,5 @@
     "email": "email0@yahoo.com",
     "group": "Test1",
     "photo": "src\\test\\resources\\img.jpg"
-  },
-  {
-    "firstName": "John1",
-    "lastName": "Smith1",
-    "address": "10051",
-    "phone": "12345671",
-    "email": "email1@yahoo.com",
-    "group": "Test1",
-    "photo": "src\\test\\resources\\img.jpg"
-  },
-  {
-    "firstName": "John2",
-    "lastName": "Smith2",
-    "address": "10052",
-    "phone": "12345672",
-    "email": "email2@yahoo.com",
-    "group": "Test1",
-    "photo": "src\\test\\resources\\img.jpg"
   }
 ]

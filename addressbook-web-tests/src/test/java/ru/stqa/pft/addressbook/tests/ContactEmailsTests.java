@@ -22,7 +22,7 @@ public class ContactEmailsTests extends TestBase {
     if (app.contact().all().size()==0) {
       app.contact().create(new ContactData().withFirstName("John").withLastName("Smith")
               .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
-              .withEmail("johmsmith@yahoo.cpm").withEmail2("john@mail.com").withEmail3("john@gmail.com").withGroup("Test1"), true);
+              .withEmail("johmsmith@yahoo.cpm").withEmail2("john@mail.com").withEmail3("john@gmail.com"), true);
     }
 
   }

@@ -17,7 +17,7 @@ public class ContactEditionsTests extends TestBase {
         if (app.db().contacts().size()==0) {
             app.contact().create(new ContactData().withFirstName("John").withLastName("Smith")
                     .withAddress("10005 NY 5st ave 123").withPhone("+1234567890")
-                    .withEmail("johmsmith@yahoo.cpm").withGroup("Test1"), true);
+                    .withEmail("johmsmith@yahoo.cpm"), true);
         }
 
     }

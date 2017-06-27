@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -43,7 +44,10 @@ public class ContactHelper extends HelperBase {
 
         type(By.name("email"), userData.getEmail());
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroup());
+           if (userData.getGroups().size()>0) {
+               Assert.assertTrue(userData.getGroups().size()==1);
+               new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(userData.getGroups().iterator().next().getName());
+                      }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -138,13 +142,15 @@ public class ContactHelper extends HelperBase {
         app.goTo().mainPage();
 
     }
-    public void assiment(ContactData contact) {
+    public void assiment(ContactData contact, GroupData group) {
         selectContactById(contact.getId());
-        assinSelectedContactToGroup();
+        assinSelectedContactToGroup(group);
         contactCache = null;
         app.goTo().mainPage();
     }
-    private void assinSelectedContactToGroup() {
+    private void assinSelectedContactToGroup(GroupData group) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
+        click(By.xpath("//div[@id='content']/form[2]/div[4]/input"));
 
     }
 

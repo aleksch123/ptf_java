@@ -30,11 +30,7 @@ public class AssimentGroupTests extends TestBase{
 
 
 
-      ContactGroups pairs = app.db().contactGroups();
-      for (ContactGroupData contact:pairs) {
 
-        System.out.print(contact.getId());
-      }
 
 
 
@@ -44,15 +40,20 @@ public class AssimentGroupTests extends TestBase{
 
   @Test
   public void testAssimentGroup() {
-
+    Groups existedGroups =app.db().groups();
     Contacts before =app.db().contacts();
-    ContactData assimentContact =before.iterator().next();
-    app.contact().assiment(assimentContact);
-    Contacts after =app.db().contacts();
+    while(before.iterator().hasNext()) {
+      ContactData editedContact = before.iterator().next();
+      Groups beforeAssimentGroups = editedContact.getGroups();
+      while (existedGroups.iterator().hasNext()) {
+        GroupData group = existedGroups.iterator().next();
+        if (!beforeAssimentGroups.contains(group)) {
 
-    assertEquals(after.size(),before.size()-1);
-    assertThat(after,equalTo(before));
-    verifyContactListInUi();
+          app.contact().assiment(editedContact, group);
+        }
+      }
+    }
+
 
 
 
