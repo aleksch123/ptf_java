@@ -143,6 +143,7 @@ public class ContactHelper extends HelperBase {
 
     }
     public void assiment(ContactData contact, GroupData group) {
+        app.goTo().mainPage();
         selectContactById(contact.getId());
         assinSelectedContactToGroup(group);
         contactCache = null;
