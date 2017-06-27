@@ -30,19 +30,21 @@ public class AssimentGroupTests extends TestBase{
   }
   @Test
   public void testAssimentGroup() {
+    int contactId = 0;
     boolean completed =false;
     Groups existedGroups =app.db().groups();
     Contacts before =app.db().contacts();
     for(ContactData editedContact:before) {
-      if (completed) return;
+      if (completed) break;
        Groups beforeAssimentGroups = editedContact.getGroups();
       for (GroupData group :existedGroups) {
 
         if (!beforeAssimentGroups.contains(group)) {
 
           app.contact().assiment(editedContact, group);
+          contactId=editedContact.getId();
           completed=true;
-          return;
+          break;
         }
       }
     }
@@ -52,9 +54,11 @@ public class AssimentGroupTests extends TestBase{
       Groups extendedGroups =app.db().groups();
       GroupData group = extendedGroups.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get();
       ContactData contact =app.db().contacts().iterator().next();
+      contactId=contact.getId();
       app.contact().assiment(contact, group);
 
     }
+    Groups groupAfter=app.db().contactById(contactId).getGroups();
   }
 
 
