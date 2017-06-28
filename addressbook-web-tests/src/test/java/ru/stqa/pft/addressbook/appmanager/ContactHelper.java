@@ -8,6 +8,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -154,7 +155,20 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form[2]/div[4]/input"));
 
     }
+    public GroupData GetGroupToAssiment(Groups groups, ContactData contact){
 
+        Groups beforeAssimentGroups = contact.getGroups();
+        for (GroupData group :groups) {
+
+            if (!beforeAssimentGroups.contains(group)) {
+
+                return group;
+            }
+
+        }
+
+        return null;
+    }
     public ContactData infoFromEditForm(ContactData contact) {
         initContactEditionsById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");

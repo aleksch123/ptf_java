@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.*;
@@ -32,22 +33,22 @@ public class AssimentGroupTests extends TestBase{
   public void testAssimentGroup() {
     int contactId = 0;
     boolean completed =false;
+    Groups beforeAssimentGroups =null;
+    Groups beforeWithAddedGroups=null;
     Groups existedGroups =app.db().groups();
-    Contacts before =app.db().contacts();
-    for(ContactData editedContact:before) {
-      if (completed) break;
-       Groups beforeAssimentGroups = editedContact.getGroups();
-      for (GroupData group :existedGroups) {
-
-        if (!beforeAssimentGroups.contains(group)) {
-
-          app.contact().assiment(editedContact, group);
+    Contacts contacts =app.db().contacts();
+    
+    for(ContactData editedContact:contacts) {
+      beforeAssimentGroups=editedContact.getGroups();
+      GroupData newGroup =app.contact().GetGroupToAssiment(existedGroups,editedContact);
+      if (newGroup!=null){
+          app.contact().assiment(editedContact, newGroup);
           contactId=editedContact.getId();
+          beforeWithAddedGroups =beforeAssimentGroups.withAdded(newGroup);
           completed=true;
           break;
         }
       }
-    }
     if(!completed){
       app.goTo().groupPage();
       app.group().CreateGroup(new GroupData().withName("Test10").withHeader("Test2").withFooter("Test3"));
@@ -56,9 +57,12 @@ public class AssimentGroupTests extends TestBase{
       ContactData contact =app.db().contacts().iterator().next();
       contactId=contact.getId();
       app.contact().assiment(contact, group);
+      beforeWithAddedGroups=beforeAssimentGroups.withAdded(group);
 
     }
     Groups groupAfter=app.db().contactById(contactId).getGroups();
+
+    assertThat(groupAfter, CoreMatchers.equalTo(beforeWithAddedGroups));
   }
 
 
