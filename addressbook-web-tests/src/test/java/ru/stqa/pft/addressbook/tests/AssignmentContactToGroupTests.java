@@ -5,16 +5,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.*;
 
-import java.util.List;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
 /**
  * Created by user on 23.06.2017.
  */
-public class AssimentGroupTests extends TestBase{
+public class AssignmentContactToGroupTests extends TestBase{
   @BeforeMethod
   public void ensurePreconditions(){
 
@@ -30,21 +27,21 @@ public class AssimentGroupTests extends TestBase{
               .withEmail("johmsmith@yahoo.cpm").inGroup(groups.iterator().next()),true);}
   }
   @Test
-  public void testAssimentGroup() {
+  public void testAssignmentContactToGroup() {
     int contactId = 0;
     boolean completed =false;
-    Groups beforeAssimentGroups =null;
+    Groups beforeAssignmentGroups =null;
     Groups beforeWithAddedGroups=null;
     Groups existedGroups =app.db().groups();
     Contacts contacts =app.db().contacts();
-    
+
     for(ContactData editedContact:contacts) {
-      beforeAssimentGroups=editedContact.getGroups();
-      GroupData newGroup =app.contact().GetGroupToAssiment(existedGroups,editedContact);
+      beforeAssignmentGroups=editedContact.getGroups();
+      GroupData newGroup =app.contact().GetGroupToAssignment(existedGroups,editedContact);
       if (newGroup!=null){
-          app.contact().assiment(editedContact, newGroup);
+          app.contact().assignment(editedContact, newGroup);
           contactId=editedContact.getId();
-          beforeWithAddedGroups =beforeAssimentGroups.withAdded(newGroup);
+          beforeWithAddedGroups =beforeAssignmentGroups.withAdded(newGroup);
           completed=true;
           break;
         }
@@ -56,8 +53,8 @@ public class AssimentGroupTests extends TestBase{
       GroupData group = extendedGroups.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get();
       ContactData contact =app.db().contacts().iterator().next();
       contactId=contact.getId();
-      app.contact().assiment(contact, group);
-      beforeWithAddedGroups=beforeAssimentGroups.withAdded(group);
+      app.contact().assignment(contact, group);
+      beforeWithAddedGroups=beforeAssignmentGroups.withAdded(group);
 
     }
     Groups groupAfter=app.db().contactById(contactId).getGroups();

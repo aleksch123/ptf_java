@@ -63,6 +63,9 @@ public class ContactHelper extends HelperBase {
     public void initContactEditionsById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
+    public void initContactDetailsById(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+    }
 
     public void UpdateContactEdition() {
         click(By.name("update"));
@@ -71,6 +74,9 @@ public class ContactHelper extends HelperBase {
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
+
+    private void SelectedGroupById(int id) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));}
 
     public void deleteSelectedContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -143,24 +149,39 @@ public class ContactHelper extends HelperBase {
         app.goTo().mainPage();
 
     }
-    public void assiment(ContactData contact, GroupData group) {
+    public void assignment(ContactData contact, GroupData group) {
         app.goTo().mainPage();
         selectContactById(contact.getId());
-        assinSelectedContactToGroup(group);
+        assignSelectedContactToGroup(group);
         contactCache = null;
         app.goTo().mainPage();
     }
-    private void assinSelectedContactToGroup(GroupData group) {
+    public void deleteFromGroup(ContactData contact, GroupData group) {
+        app.goTo().mainPage();
+        SelectedGroupById(group.getId());
+        selectContactById(contact.getId());
+        click(By.name("remove"));
+
+        contactCache = null;
+        app.goTo().mainPage();
+    }
+
+
+    private void assignSelectedContactToGroup(GroupData group) {
         new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(group.getId()));
         click(By.xpath("//div[@id='content']/form[2]/div[4]/input"));
 
     }
-    public GroupData GetGroupToAssiment(Groups groups, ContactData contact){
 
-        Groups beforeAssimentGroups = contact.getGroups();
+
+
+
+    public GroupData GetGroupToAssignment(Groups groups, ContactData contact){
+
+        Groups beforeAssignmentGroups = contact.getGroups();
         for (GroupData group :groups) {
 
-            if (!beforeAssimentGroups.contains(group)) {
+            if (!beforeAssignmentGroups.contains(group)) {
 
                 return group;
             }

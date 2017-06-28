@@ -151,8 +151,13 @@ public class ContactData {
   public Groups getGroups() {
     return new Groups(groups);
   }
+
   public ContactData inGroup(GroupData group){
     groups.add(group);
+    return this;
+  }
+  public ContactData outGroup(GroupData group){
+    groups.remove(group);
     return this;
   }
 
