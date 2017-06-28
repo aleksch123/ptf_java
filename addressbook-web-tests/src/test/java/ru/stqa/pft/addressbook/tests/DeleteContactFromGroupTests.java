@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 
-public class DeleteContactFromGroup extends TestBase{
+public class DeleteContactFromGroupTests extends TestBase{
     @BeforeMethod
     public void ensurePreconditions(){
 

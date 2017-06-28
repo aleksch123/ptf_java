@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.*;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 
@@ -50,16 +51,16 @@ public class AssignmentContactToGroupTests extends TestBase{
       app.goTo().groupPage();
       app.group().CreateGroup(new GroupData().withName("Test10").withHeader("Test2").withFooter("Test3"));
       Groups extendedGroups =app.db().groups();
-      GroupData group = extendedGroups.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get();
-      ContactData contact =app.db().contacts().iterator().next();
+      GroupData lastAddedGroup = extendedGroups.stream().max((g1, g2) -> Integer.compare(g1.getId(), g2.getId())).get();
+      ContactData contact =contacts.iterator().next();
       contactId=contact.getId();
-      app.contact().assignment(contact, group);
-      beforeWithAddedGroups=beforeAssignmentGroups.withAdded(group);
+      app.contact().assignment(contact, lastAddedGroup);
+      beforeWithAddedGroups=beforeAssignmentGroups.withAdded(lastAddedGroup);
 
     }
     Groups groupAfter=app.db().contactById(contactId).getGroups();
 
-    assertThat(groupAfter, CoreMatchers.equalTo(beforeWithAddedGroups));
+    assertThat(groupAfter, equalTo(beforeWithAddedGroups));
   }
 
 
