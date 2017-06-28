@@ -75,8 +75,8 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
-    private void SelectedGroupById(int id) {
-        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));}
+    private void SelectedGroupById(String id) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(id);}
 
     public void deleteSelectedContact() {
         click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -158,10 +158,11 @@ public class ContactHelper extends HelperBase {
     }
     public void deleteFromGroup(ContactData contact, GroupData group) {
         app.goTo().mainPage();
-        SelectedGroupById(group.getId());
+        SelectedGroupById(String.valueOf(group.getId()));
         selectContactById(contact.getId());
         click(By.name("remove"));
-
+        app.goTo().mainPage();
+        SelectedGroupById("");
         contactCache = null;
         app.goTo().mainPage();
     }

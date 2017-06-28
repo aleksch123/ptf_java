@@ -7,6 +7,9 @@ import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 
 public class DeleteContactFromGroup extends TestBase{
     @BeforeMethod
@@ -34,8 +37,12 @@ public class DeleteContactFromGroup extends TestBase{
      public void testDeleteContactFromGroup(){
 
         ContactData contact =app.db().contacts().iterator().next();
-        GroupData group =contact.getGroups().iterator().next();
-        app.contact().deleteFromGroup(contact,group);
+        Groups before = contact.getGroups();
+        GroupData deletedGroup =before.iterator().next();
+        app.contact().deleteFromGroup(contact,deletedGroup);
+        Groups after=app.db().contactById(contact.getId()).getGroups();
+        assertThat(after,equalTo(before.without(deletedGroup)));
+
 
 
 
