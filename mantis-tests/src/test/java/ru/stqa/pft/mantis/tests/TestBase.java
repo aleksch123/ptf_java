@@ -6,9 +6,7 @@ import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 
 
-/**
- * Created by Алексей on 20.05.2017.
- */
+
 public class TestBase {
 
     public static final ApplicationManager app = new ApplicationManager(System.getProperty("browser",BrowserType.CHROME));
