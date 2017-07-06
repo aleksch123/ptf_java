@@ -18,26 +18,26 @@ import static org.testng.Assert.assertTrue;
 public class ResetPasswordTests extends TestBase {
   @BeforeMethod
   public void startMailServer(){
-    app.mail().start();
+   app.mail().start();
   }
   @Test
   public void testResetPassword() throws IOException, MessagingException {
-    String email = "user1499304967042@localhost.localdomain";
-
     app.goTo().login("administrator","root");
     app.goTo().manage();
     app.goTo().usersTab();
-    String username="user1499304967042";
+    String username=app.db().getUserName();
     app.resetPassword().select(username);
     app.resetPassword().init();
     List<MailMessage> mailMessages= app.mail().waitForMail(1,10000);
+    String email = username+"@localhost.localdomain";
     String confiramationLink = findConfiramationLink(mailMessages, email);
     String newPassword = String.valueOf(System.currentTimeMillis());
     app.resetPassword().finish(confiramationLink, newPassword);
     Assert.assertTrue(app.newSession().login(username,newPassword));
   }
   @AfterMethod
-  public void stopMailServer(){
+  public void stopMailServer()
+  {
     app.mail().stop();
   }
 

@@ -19,7 +19,7 @@ public class ResetPasswordHelper extends HelperBase{
   }
 
   public void select(String username){
-    click(By.linkText("user1499304967042"));
+    click(By.linkText(username));
   }
 
   public void init() {
