@@ -23,6 +23,8 @@ public class ApplicationManager {
     private RegistrationHelper registrationHalper;
     private FtpHelper ftp;
     private MailHelper mailHalper;
+    private NavigationHelper navigationHelper;
+    private ResetPasswordHelper resetPassword;
 
     public ApplicationManager(String browser)  {
         this.browser = browser;
@@ -55,6 +57,12 @@ public class ApplicationManager {
      }
      return registrationHalper;
     }
+  public ResetPasswordHelper resetPassword() {
+    if(resetPassword==null) {
+      resetPassword = new ResetPasswordHelper(this);
+    }
+    return resetPassword;
+  }
 
     public FtpHelper ftp(){
      if (ftp==null){
@@ -85,5 +93,11 @@ public class ApplicationManager {
         }
         return mailHalper;
         }
+  public NavigationHelper goTo(){
+    if(navigationHelper==null) {
+      navigationHelper = new NavigationHelper(this);
+    }
+    return navigationHelper;
+  }
 
 }
