@@ -22,6 +22,7 @@ public class ApplicationManager {
     private String browser;
     private RegistrationHelper registrationHalper;
     private FtpHelper ftp;
+    private MailHelper mailHalper;
 
     public ApplicationManager(String browser)  {
         this.browser = browser;
@@ -41,7 +42,7 @@ public class ApplicationManager {
         if (wd!=null){
        wd.quit();}
     }
- public HttpSession  NewSession() {
+ public HttpSession  newSession() {
      return new HttpSession(this);
  }
  public String getProperty(String key){
@@ -77,4 +78,12 @@ public class ApplicationManager {
      }
         return wd;
     }
+
+    public MailHelper mail(){
+        if(mailHalper==null) {
+            mailHalper = new MailHelper(this);
+        }
+        return mailHalper;
+        }
+
 }
