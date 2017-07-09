@@ -1,0 +1,29 @@
+<list>
+  <contact>
+    <firstName>John0</firstName>
+    <lastName>Smith0</lastName>
+    <address>10050</address>
+    <phone>12345670</phone>
+    <email>email0@yahoo.com</email>
+    <group>Test1</group>
+    <id>2147483647</id>
+  </contact>
+  <contact>
+    <firstName>John1</firstName>
+    <lastName>Smith1</lastName>
+    <address>10051</address>
+    <phone>12345671</phone>
+    <email>email1@yahoo.com</email>
+    <group>Test1</group>
+    <id>2147483647</id>
+  </contact>
+  <contact>
+    <firstName>John2</firstName>
+    <lastName>Smith2</lastName>
+    <address>10052</address>
+    <phone>12345672</phone>
+    <email>email2@yahoo.com</email>
+    <group>Test1</group>
+    <id>2147483647</id>
+  </contact>
+</list>

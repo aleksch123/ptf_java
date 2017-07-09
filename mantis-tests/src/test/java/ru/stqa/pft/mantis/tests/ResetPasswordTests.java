@@ -10,7 +10,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
-import static org.testng.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by user on 06.07.2017.
@@ -33,7 +33,7 @@ public class ResetPasswordTests extends TestBase {
     String confiramationLink = findConfiramationLink(mailMessages, email);
     String newPassword = String.valueOf(System.currentTimeMillis());
     app.resetPassword().finish(confiramationLink, newPassword);
-    Assert.assertTrue(app.newSession().login(username,newPassword));
+    assertTrue(app.newSession().login(username,newPassword));
   }
   @AfterMethod
   public void stopMailServer()
