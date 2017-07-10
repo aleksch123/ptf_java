@@ -5,6 +5,7 @@ import ru.stqa.pft.mantis.Model.Issue;
 import ru.stqa.pft.mantis.Model.Project;
 
 import javax.xml.rpc.ServiceException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.RemoteException;
 import java.util.Set;
@@ -16,7 +17,8 @@ import static org.testng.Assert.assertEquals;
  */
 public class SoapTests extends TestBase{
     @Test
-    public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
+    public void testGetProjects() throws IOException, ServiceException {
+        skipIfNotFixed(1);
         Set<Project> projects = app.soap().getProjects();
         System.out.println(projects.size());
         for(Project project:projects){

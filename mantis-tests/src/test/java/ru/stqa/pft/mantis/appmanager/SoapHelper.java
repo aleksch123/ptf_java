@@ -56,7 +56,7 @@ public class SoapHelper {
                 .withName(createdIssueData.getProject().getName()));
     }
 
-    public String getStatusById(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    public String getIssueStatusById(int issueId) throws MalformedURLException, ServiceException, RemoteException {
         MantisConnectPortType mc = getMantisConnect();
         return mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"), BigInteger.valueOf(issueId))
                 .getStatus().getName();
