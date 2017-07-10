@@ -14,26 +14,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" scope="PROVIDED">
-      <library name="Gradle: testng-6.11:11">
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="TEST">
-      <library name="Gradle: testng-6.11:11">
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="RUNTIME">
-      <library name="Gradle: testng-6.11:11">
-        <CLASSES />
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
