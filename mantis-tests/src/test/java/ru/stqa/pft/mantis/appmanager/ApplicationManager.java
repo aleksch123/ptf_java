@@ -108,7 +108,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public SoapHelper soap(){
+  public SoapHelper saop(){
 
       if(soapHelper==null) {
           soapHelper = new SoapHelper(this);
