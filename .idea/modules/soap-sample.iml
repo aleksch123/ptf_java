@@ -5,10 +5,6 @@
     <output-test url="file://C:/dev/soap-sample/build/classes/test" />
     <exclude-output />
     <content url="file://C:/dev/soap-sample">
-      <sourceFolder url="file://C:/dev/soap-sample/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://C:/dev/soap-sample/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://C:/dev/soap-sample/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://C:/dev/soap-sample/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://C:/dev/soap-sample/.gradle" />
       <excludeFolder url="file://C:/dev/soap-sample/build" />
     </content>

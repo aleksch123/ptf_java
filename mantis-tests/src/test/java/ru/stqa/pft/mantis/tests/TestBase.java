@@ -40,7 +40,7 @@ public class TestBase {
     }
 
     public boolean isIssueOpen(int issueId) throws IOException, ServiceException {
-        String issueStatus = app.soap().getIssueStatusById(issueId);
+        String issueStatus = app.saop().getIssueStatusById(issueId);
         if (issueStatus.equals("resolved") || issueStatus.equals("closed")) {
             return false;
         } else
