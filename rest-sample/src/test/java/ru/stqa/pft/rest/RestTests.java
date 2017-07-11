@@ -3,11 +3,9 @@ package ru.stqa.pft.rest;
 /**
  * Created by user on 11.07.2017.
  */
-import com.google.gson.Gson;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.message.BasicNameValuePair;
 import org.testng.annotations.Test;
@@ -15,7 +13,6 @@ import org.testng.annotations.Test;
 import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.Set;
-
 
 import static org.testng.Assert.assertEquals;
 
@@ -32,9 +29,7 @@ public class RestTests extends TestBase {
     assertEquals(newIssues, oldIssues);
   }
 
-
   private int createIssue(Issue newIssue) throws IOException {
-
     String json = getExecutor().execute(Request.Post("http://demo.bugify.com/api/issues.json")
             .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject())
                     , new BasicNameValuePair("description", newIssue.getDescription())))

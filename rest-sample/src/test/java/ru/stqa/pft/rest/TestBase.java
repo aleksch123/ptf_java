@@ -1,5 +1,4 @@
 package ru.stqa.pft.rest;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -18,7 +17,6 @@ import java.util.Set;
  */
 public class TestBase {
 
-
   public boolean isIssueOpen(int issueId) throws IOException {
     String status = getIssueStatusById(5);
       if (status.equals("resolved") || status.equals("closed")) {
@@ -27,16 +25,13 @@ public class TestBase {
         System.out.println("Issue still open");
           return true;
       }
-
   }
-
 
   public void skipIfNotFixed(int issueId) throws IOException, ServiceException, SkipException {
     if (isIssueOpen(issueId)) {
       throw new SkipException("Ignored because of issue " + issueId);
     }
   }
-
 
   protected Set<Issue> getIssues() throws IOException {
     String json = getExecutor().execute(Request.Get("http://demo.bugify.com/api/issues.json")).returnContent().asString();
