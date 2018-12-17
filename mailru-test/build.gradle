@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group 'MailRu'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:6.11'
+    compile 'org.seleniumhq.selenium:selenium-java:3.4.0'
+}
